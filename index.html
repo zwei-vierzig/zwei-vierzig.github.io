@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Zwei & Vierzig</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <style>
+      body,
+      html {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+      }
+      .unselectable {
+        -webkit-user-select: none;
+        -moz-user-select: -moz-none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+      .container {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: white;
+        transition: background-color 0.5s ease;
+      }
+      .logo {
+        width: 50vmin;
+        height: 50vmin;
+        z-index: 10;
+        cursor: pointer;
+      }
+      .explosion {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(0);
+        -ms-transform: translate(-50%, -50%) scale(0);
+        -moz-transform: translate(-50%, -50%) scale(0);
+        -webkit-transform: translate(-50%, -50%) scale(0);
+        width: 300vmax;
+        height: 300vmax;
+        border-radius: 50%;
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        -ms-border-radius: 50%;
+        z-index: 1;
+        pointer-events: none;
+      }
+      .explode-to-black {
+        background-color: black;
+        -webkit-animation: explode 1s ease-out forwards;
+        animation: explode 1s ease-out forwards;
+      }
+      .explode-to-white {
+        background-color: white;
+        -webkit-animation: explode 1s ease-out forwards;
+        animation: explode 1s ease-out forwards;
+      }
+      @keyframes explode {
+        to {
+          -webkit-transform: translate(-50%, -50%) scale(1);
+          transform: translate(-50%, -50%) scale(1);
+        }
+      }
+      @-webkit-keyframes explode {
+        to {
+          -webkit-transform: translate(-50%, -50%) scale(1);
+          transform: translate(-50%, -50%) scale(1);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container unselectable">
+      <div class="explosion"></div>
+      <img class="logo" src="/42_positive.svg" alt="Logo" />
+    </div>
+    <script>
+      const container = document.querySelector(".container");
+      const explosion = document.querySelector(".explosion");
+      const logo = document.querySelector(".logo");
+      let isPositive = true;
+      let isAnimating = false;
+
+      let oldExplosion = null;
+
+      function toggleTheme() {
+        if (isAnimating) return;
+        isAnimating = true;
+        isPositive = !isPositive;
+
+        const newExplosion = explosion.cloneNode();
+        container.appendChild(newExplosion);
+
+        newExplosion.classList.add(
+          isPositive ? "explode-to-white" : "explode-to-black"
+        );
+
+        setTimeout(() => {
+          container.style.backgroundColor = isPositive ? "white" : "black";
+          logo.src = isPositive ? "/42_positive.svg" : "/42_negative.svg";
+        }, 100);
+
+        setTimeout(() => {
+          if (oldExplosion) {
+            container.removeChild(oldExplosion);
+          }
+          oldExplosion = newExplosion;
+          isAnimating = false;
+        }, 1000);
+      }
+
+      container.addEventListener("click", toggleTheme);
+    </script>
+  </body>
+</html>
