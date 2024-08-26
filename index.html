@@ -39,10 +39,10 @@
         position: fixed;
         top: 50%;
         left: 50%;
-        transform: translate(-50%, -50%) scale(0);
-        -ms-transform: translate(-50%, -50%) scale(0);
-        -moz-transform: translate(-50%, -50%) scale(0);
-        -webkit-transform: translate(-50%, -50%) scale(0);
+        transform: translate(-50%, -50%) scale(0.01);
+        -ms-transform: translate(-50%, -50%) scale(0.01);
+        -moz-transform: translate(-50%, -50%) scale(0.01);
+        -webkit-transform: translate(-50%, -50%) scale(0.01);
         width: 300vmax;
         height: 300vmax;
         border-radius: 50%;
@@ -105,7 +105,7 @@
         setTimeout(() => {
           container.style.backgroundColor = isPositive ? "white" : "black";
           logo.src = isPositive ? "/42_positive.svg" : "/42_negative.svg";
-        }, 100);
+        }, 50);
 
         setTimeout(() => {
           if (oldExplosion) {
