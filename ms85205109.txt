@@ -1,0 +1,5 @@
+﻿{
+  "Description": "Überprüfungsdatei für Domänen-Eigentümerschaft für Microsoft 365-Position im Website-Root",
+  "Domain": "zwei-vierzig.com",
+  "Id": "e9d138bd-f06d-4cba-84ba-b58b9b23256a"
+}
