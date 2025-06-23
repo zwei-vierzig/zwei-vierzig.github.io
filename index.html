@@ -30,12 +30,22 @@
         align-items: center;
         background-color: white;
         transition: background-color 0.5s ease;
+        position: relative;
       }
       .logo {
         width: 50vmin;
         height: 50vmin;
         z-index: 10;
         cursor: pointer;
+      }
+      .contact-info {
+        position: absolute;
+        bottom: 20px;
+        width: 100%;
+        text-align: center;
+        font-family: sans-serif;
+        color: black;
+        z-index: 20;
       }
       .explosion {
         position: fixed;
@@ -82,11 +92,17 @@
     <div class="container unselectable">
       <div class="explosion"></div>
       <img class="logo" src="/42_positive.svg" alt="Logo" />
+      <div class="contact-info">
+        <p>+49 160 97609742</p>
+        <p>hello@zwei-vierzig.de</p>
+        <p>Walderseestraße 7, 30161 Hannover</p>
+      </div>
     </div>
     <script>
       const container = document.querySelector(".container");
       const explosion = document.querySelector(".explosion");
       const logo = document.querySelector(".logo");
+      const contact = document.querySelector(".contact-info");
       let isPositive = true;
       let isAnimating = false;
 
@@ -107,6 +123,7 @@
         setTimeout(() => {
           container.style.backgroundColor = isPositive ? "white" : "black";
           logo.src = isPositive ? "/42_positive.svg" : "/42_negative.svg";
+          contact.style.color = isPositive ? "black" : "white";
         }, 50);
 
         setTimeout(() => {
